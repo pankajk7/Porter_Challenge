@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:padding="10dp" >
+
+    <com.porter.components.TextViewCircular
+        android:id="@+id/textview_name"
+        style="@style/textviewstyle_Medium"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:lines="2"
+        android:padding="2dp"
+        android:singleLine="true"
+        android:ellipsize="end" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="2.3" >
+
+        <com.porter.components.TextViewCircular
+            android:id="@+id/textview_price"
+            style="@style/textviewstyle_small"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:padding="2dp"/>
+
+        <com.porter.components.TextAwesome
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_toLeftOf="@id/textview_price"
+            android:gravity="center"
+            android:text="@string/fa_inr"
+            android:textColor="@color/black"
+            android:padding="2dp"
+            android:textSize="14sp" />
+
+    </RelativeLayout>
+
+    <com.porter.components.TextAwesome
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="2.8"
+        android:gravity="center"
+        android:text="@string/fa_angle_right"
+        android:textColor="@color/primary_color"
+        android:textSize="30sp" />
+
+</LinearLayout>

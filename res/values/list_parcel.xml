@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="api_hit">API hits: %1$s</string>
+    
+    <string name="Name">Name</string>
+    <string name="Type">Type</string>
+    <string name="Sort">Sort</string>
+    <string name="back">Back</string>
+    <string name="sms">SMS</string>
+    <string name="list_all">List All</string>
+    
+    <string name="total_parcels">Total Parcels: %1$s</string>
+    <string name="value">Value</string>
+    <string name="weight">Weight</string>
+    
+    <string name="search_by">Search (by parcel name, price, weight)</string>
+</resources>

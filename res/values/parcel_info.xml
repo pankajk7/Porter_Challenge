@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="color">Color:</string>
+
+    <string name="q">Q</string>
+    <string name="type">Type: %1$s</string>
+    <string name="weight_info">Weight: %1$s</string>
+    <string name="price">Price: %1$s</string>
+    <string name="qnty">Quantity: %1$s</string>
+    <string name="phone">Ph: %1$s</string>
+</resources>

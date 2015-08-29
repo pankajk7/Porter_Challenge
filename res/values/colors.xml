@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="primary_color">#0D69AF</color>
+    <color name="primary_color_dark">#09497A</color>
+    
+    <color name="white">#fff</color>
+    <color name="black">#000</color>
+    
+    <color name="header_text_color">#848484</color>
+    
+    <color name="sort_by_background">#ddFBBEC1</color>
+    <color name="sort_by_color">#FF4055</color>
+    
+     <color name="button_home_pressed">#FF5304</color>
+    <color name="button_home_normal">#FB7750</color>
+    
+</resources>

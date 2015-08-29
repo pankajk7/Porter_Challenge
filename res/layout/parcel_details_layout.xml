@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/productDetails_rootLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical" >
+
+<!--     <ScrollView -->
+<!--         android:layout_width="match_parent" -->
+<!--         android:layout_height="match_parent" -->
+<!--         android:layout_weight="1" > -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+
+            <com.android.volley.toolbox.NetworkImageView
+                android:id="@+id/imageView_parcelInfo"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="left|top"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:scaleType="fitXY"
+                android:src="@drawable/image_uploading" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="5dp"
+                android:layout_weight="1.7"
+                android:background="@drawable/view_round_corner_with_border"
+                android:gravity="left"
+                android:orientation="vertical" >
+
+                <com.porter.components.TextViewCircular
+                    android:id="@+id/textview_parcelInfo_name"
+                    style="@style/textviewstyle_MediumBig"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_weight="0"
+                    android:background="@drawable/button_selector"
+                    android:gravity="left|center_vertical"
+                    android:padding="5dp"
+                    android:text="@string/Name"
+                    android:textColor="@color/white" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_weight="0"
+                    android:orientation="horizontal"
+                    android:padding="5dp" >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="horizontal" >
+
+                        <com.porter.components.TextAwesome
+                            style="@style/textviewstyle_FontAwesome"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0"
+                            android:gravity="center_vertical"
+                            android:padding="2dp"
+                            android:text="@string/fa_shopping_cart" />
+
+                        <com.porter.components.TextViewCircular
+                            android:id="@+id/textView_parcelInfo_type"
+                            style="@style/textviewstyle_Medium.light"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical|left"
+                            android:text="@string/type" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="horizontal" >
+
+                        <com.porter.components.TextAwesome
+                            style="@style/textviewstyle_FontAwesome"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0"
+                            android:gravity="center_vertical"
+                            android:padding="2dp"
+                            android:text="@string/fa_usd" />
+
+                        <com.porter.components.TextViewCircular
+                            android:id="@+id/textView_parcelInfo_value"
+                            style="@style/textviewstyle_Medium.light"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:text="@string/price" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_weight="0"
+                    android:orientation="horizontal"
+                    android:padding="5dp" >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="horizontal" >
+
+                        <com.porter.components.TextAwesome
+                            style="@style/textviewstyle_FontAwesome"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0"
+                            android:gravity="center_vertical"
+                            android:padding="2dp"
+                            android:text="@string/fa_database" />
+
+                        <com.porter.components.TextViewCircular
+                            android:id="@+id/textView_parcelInfo_weight"
+                            style="@style/textviewstyle_Medium.light"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:text="@string/weight_info" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="horizontal" >
+
+                        <com.porter.components.TextViewCircular
+                            style="@style/textviewstyle_Medium.light"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0"
+                            android:gravity="center_vertical"
+                            android:padding="2dp"
+                            android:text="@string/q"
+                            android:textStyle="bold" />
+
+                        <com.porter.components.TextViewCircular
+                            android:id="@+id/textView_parcelInfo_qnty"
+                            style="@style/textviewstyle_Medium.light"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:text="@string/qnty" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_weight="0"
+                    android:orientation="horizontal"
+                    android:padding="5dp" >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1" >
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center_vertical" >
+
+                            <com.porter.components.TextAwesome
+                                style="@style/textviewstyle_FontAwesome"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0"
+                                android:gravity="center_vertical"
+                                android:padding="2dp"
+                                android:text="@string/fa_phone" />
+
+                            <com.porter.components.TextViewCircular
+                                android:id="@+id/textView_parcelInfo_ph"
+                                style="@style/textviewstyle_Medium.light"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center_vertical"
+                                android:text="@string/phone" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical|left" >
+
+                        <com.porter.components.TextViewCircular
+                            style="@style/textviewstyle_Medium.light"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0"
+                            android:gravity="center_vertical"
+                            android:text="@string/color" />
+
+                        <View
+                            android:id="@+id/view_parcelInfo_color"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_marginLeft="7dp"
+                            android:layout_weight="0"
+                            android:background="@drawable/view_round_corner" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+<!--     </ScrollView> -->
+
+</LinearLayout>

@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <com.porter.components.EditTextRegularFont 
+        style="@style/textviewstyle_Medium.black"
+        android:id="@+id/editText_search"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_weight="0"
+        android:layout_margin="5dp"
+        android:hint="@string/search_by"
+        android:padding="5dp"
+        android:background="@drawable/view_round_corner_with_border"
+        android:singleLine="true"
+        android:ellipsize="end"/>
+    
+    <ListView
+        android:id="@+id/listview_listCars"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:divider="@color/white"
+        android:dividerHeight="1dp"
+        android:fastScrollEnabled="true" >
+    </ListView>
+
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:layout_margin="5dp"
+        android:orientation="vertical">
+        
+        <LinearLayout 
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0"
+            android:layout_margin="5dp"
+            android:orientation="horizontal"
+            android:background="@drawable/view_round_corner_with_border">
+        <com.porter.components.TextViewCircular 
+            style="@style/textviewstyle_Medium.light"
+            android:id="@+id/textView_listParcels_apiHit"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_weight="1.2"
+            android:padding="5dp"
+            android:gravity="center_vertical|left"
+            android:text="@string/api_hit"/>
+        
+        <View 
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            android:layout_weight="0"
+            android:background="@color/header_text_color"/>
+        <com.porter.components.TextViewCircular 
+            style="@style/textviewstyle_Medium.light"
+            android:id="@+id/textView_listParcels_totalParcels"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:padding="5dp"
+            android:gravity="center_vertical|right"
+            android:singleLine="true"
+            android:text="@string/total_parcels"/>
+        
+        </LinearLayout>
+        
+        <LinearLayout 
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="0"
+            android:orientation="vertical"
+            android:visibility="gone">
+        <com.porter.components.ButtonRegularFont 
+                    android:id="@+id/button_listParcels_listAll"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="3dp"
+                    android:text="@string/list_all"
+                    android:textSize="14sp"
+                    android:textColor="@color/white"
+                    android:background="@drawable/button_selector"/>
+        </LinearLayout>
+       <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="horizontal" >
+                
+                <LinearLayout 
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3"
+                    android:gravity="center"
+                    android:layout_marginLeft="5dp"
+                    android:background="@drawable/view_round_corner_with_border">
+                    <com.porter.components.TextViewCircular 
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/Sort"
+                        android:textSize="16sp"
+                        android:textColor="@color/black"/>
+                </LinearLayout>
+                <LinearLayout 
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:background="@drawable/view_with_border">
+                <com.porter.components.ButtonRegularFont 
+                    android:id="@+id/button_listParcels_price"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:layout_margin="5dp"
+                    android:text="@string/value"
+                    android:textSize="14sp"
+                    android:textColor="@color/white"
+                    android:background="@drawable/button_selector"/>
+                
+               <com.porter.components.ButtonRegularFont 
+                    android:id="@+id/button_listParcels_weight"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:layout_margin="5dp"
+                    android:text="@string/weight"
+                    android:textSize="14sp"
+                    android:textColor="@color/white"
+                    android:background="@drawable/button_selector"/>
+               </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+</LinearLayout>
