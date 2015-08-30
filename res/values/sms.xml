@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="send_sms">Send Sms</string>
+    <string name="ph_sms">Enter a mobile number</string>
+    <string name="message_description">Below link will be send to the entered number.</string>
+    <string name="note"><![CDATA[<b><font color=#b20000>Note:</b> The SMS will cost from your main balance.]]></string>
+    <string name="cancel">Cancel</string>
+    <string name="send">Send</string>
+    
+    <string name="phone_empty">Please enter a mobile number.</string>
+    <string name="phone_digit_validation">Please enter valid 10 digit number.</string>
+</resources>

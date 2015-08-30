@@ -47,8 +47,9 @@ public class ParcelListFragment extends Fragment {
 	TextView apiHitsTextView;
 	TextView totalParcelTextView;
 	Button priceButton;
-	Button ratingButton;
+	Button weightButton;
 	Button listAllButton;
+	Button nameButton;
 	EditText searchEditText;
 
 	List<Parcel> parcelInfoList;
@@ -65,6 +66,7 @@ public class ParcelListFragment extends Fragment {
 		findViews(rootView);
 		listeners();
 		hideKeypad();
+		setDefaultValues();
 		getList();
 		getApiHits();
 		return rootView;
@@ -82,8 +84,10 @@ public class ParcelListFragment extends Fragment {
 				.findViewById(R.id.textView_listParcels_totalParcels);
 		priceButton = (Button) rootView
 				.findViewById(R.id.button_listParcels_price);
-		ratingButton = (Button) rootView
+		weightButton = (Button) rootView
 				.findViewById(R.id.button_listParcels_weight);
+		nameButton = (Button) rootView
+				.findViewById(R.id.button_listParcels_name);
 		searchEditText = (EditText) rootView.findViewById(R.id.editText_search);
 		listAllButton = (Button) rootView
 				.findViewById(R.id.button_listParcels_listAll);
@@ -114,16 +118,33 @@ public class ParcelListFragment extends Fragment {
 		priceButton.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Collections.sort(parcelInfoList, byValue());
-				setAdapter();
+				if (adapter != null) {
+					ArrayList<Parcel> arrayList = (ArrayList<Parcel>)adapter.getList();
+					Collections.sort(arrayList, byValue());
+					adapter.addList(arrayList);
+				}
 			}
 		});
 
-		ratingButton.setOnClickListener(new OnClickListener() {
+		weightButton.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Collections.sort(parcelInfoList, byWeight());
-				setAdapter();
+				if (adapter != null) {
+					ArrayList<Parcel> arrayList = (ArrayList<Parcel>)adapter.getList();
+					Collections.sort(arrayList, byWeight());
+					adapter.addList(arrayList);
+				}
+			}
+		});
+		
+		nameButton.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				if (adapter != null) {
+					ArrayList<Parcel> arrayList = (ArrayList<Parcel>)adapter.getList();
+					Collections.sort(arrayList, byName());
+					adapter.addList(arrayList);
+				}
 			}
 		});
 
@@ -139,44 +160,66 @@ public class ParcelListFragment extends Fragment {
 			public void beforeTextChanged(CharSequence s, int start, int count,
 					int after) {
 				tempList = new ArrayList<Parcel>();
+				tempList.clear();
 			}
 
 			@Override
 			public void afterTextChanged(Editable s) {
 				String string = s.toString();
-				if (s.length() > 1) {
-					if (parcelInfoList != null) {
-						for (int i = 0; i < parcelInfoList.size(); i++) {
-							string = string.toLowerCase();
-							String name = parcelInfoList.get(i).getName()
-									.toLowerCase();
-							String price = parcelInfoList.get(i).getPrice()
-									.toLowerCase();
-							String weight = parcelInfoList.get(i).getWeight()
-									.toLowerCase();
-							if (name.startsWith(string)) {
-								tempList.add(parcelInfoList.get(i));
-							} else if (price.contains(string)) {
-								tempList.add(parcelInfoList.get(i));
-							} else if (weight.contains(string)) {
-								tempList.add(parcelInfoList.get(i));
+				if (adapter != null) {
+					if (s.length() > 1) {
+						if (adapter.getList() != null) {
+							ArrayList<Parcel> arrayList = (ArrayList<Parcel>) adapter
+									.getList();
+							for (int i = 0; i < arrayList.size(); i++) {
+								string = string.toLowerCase();
+								String name = arrayList.get(i).getName()
+										.toLowerCase();
+								String price = arrayList.get(i).getPrice()
+										.toLowerCase();
+								String weight = arrayList.get(i).getWeight()
+										.toLowerCase();
+								if (name.startsWith(string)) {
+									tempList.add(arrayList.get(i));
+								} else if (price.contains(string)) {
+									tempList.add(arrayList.get(i));
+								} else if (weight.contains(string)) {
+									tempList.add(arrayList.get(i));
+								}
 							}
+							adapter.addList(tempList);
+							totalParcelTextView.setText(String.format(getActivity().getResources()
+									.getString(R.string.total_parcels), tempList.size()));
 						}
-						adapter.addList(tempList);
+					} else {
+						adapter.addList(parcelInfoList);
+						totalParcelTextView.setText(String.format(getActivity().getResources()
+								.getString(R.string.total_parcels), parcelInfoList.size()));
 					}
-				} else {
-					adapter.addList(parcelInfoList);
 				}
 			}
 		});
 	}
 
+	private Comparator<Parcel> byName() {
+		return new Comparator<Parcel>() {
+			@Override
+			public int compare(Parcel lhs, Parcel rhs) {
+				return rhs.getName().compareTo(lhs.getName());
+			}
+		};
+	}
+	
 	private Comparator<Parcel> byValue() {
 		return new Comparator<Parcel>() {
 			@Override
 			public int compare(Parcel lhs, Parcel rhs) {
-				Float fLHS = Float.parseFloat(lhs.getPrice());
-				Float fRHS = Float.parseFloat(rhs.getPrice());
+				String lhsString = lhs.getPrice();
+				String rhsString = rhs.getPrice();
+				lhsString = lhsString.replace(",", "");
+				rhsString = rhsString.replace(",", "");
+				Float fLHS = Float.parseFloat(lhsString);
+				Float fRHS = Float.parseFloat(rhsString);
 				return fRHS.compareTo(fLHS);
 			}
 		};
@@ -186,9 +229,7 @@ public class ParcelListFragment extends Fragment {
 		return new Comparator<Parcel>() {
 			@Override
 			public int compare(Parcel lhs, Parcel rhs) {
-				Float fLHS = Float.parseFloat(lhs.getWeight());
-				Float fRHS = Float.parseFloat(rhs.getWeight());
-				return fRHS.compareTo(fLHS);
+				return rhs.getWeight().compareTo(lhs.getWeight());
 			}
 		};
 	}
@@ -201,8 +242,10 @@ public class ParcelListFragment extends Fragment {
 				.readJsonFileData(Constants.PARAMETER_JSON_FILE_PARCEL_INFO);
 		// if there is data then assign to arraylist
 		if (data != null) {
-			ParcelListInfo objParcelListInfo = new Gson().fromJson(data, ParcelListInfo.class);
-			parcelInfoList = new ArrayList<Parcel>(Arrays.asList(objParcelListInfo.getParcels()));
+			ParcelListInfo objParcelListInfo = new Gson().fromJson(data,
+					ParcelListInfo.class);
+			parcelInfoList = new ArrayList<Parcel>(
+					Arrays.asList(objParcelListInfo.getParcels()));
 			if (parcelInfoList.size() > 0) {
 				setAdapter();
 				totalParcelTextView.setText(String.format(getActivity()
@@ -215,6 +258,7 @@ public class ParcelListFragment extends Fragment {
 		if (!new ConnectionDetector(getActivity()).isConnectedToInternet()) {
 			new AlertMessage(getActivity())
 					.showTostMessage(Constants.NO_Internet);
+			setDefaultValues();
 			return;
 		}
 
@@ -225,9 +269,10 @@ public class ParcelListFragment extends Fragment {
 		new RestWebService(getActivity()) {
 			public void onSuccess(String data) {
 				if (showLoading) {
-					ParcelListInfo objParcelListInfo = new Gson()
-							.fromJson(data, ParcelListInfo.class);
-					parcelInfoList = new ArrayList<Parcel>(Arrays.asList(objParcelListInfo.getParcels()));
+					ParcelListInfo objParcelListInfo = new Gson().fromJson(
+							data, ParcelListInfo.class);
+					parcelInfoList = new ArrayList<Parcel>(
+							Arrays.asList(objParcelListInfo.getParcels()));
 					new ReadWriteJsonFileUtils(getActivity())
 							.createJsonFileData(
 									Constants.PARAMETER_JSON_FILE_PARCEL_INFO,
@@ -282,20 +327,21 @@ public class ParcelListFragment extends Fragment {
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	private void setAdapter() {
-		adapter = new ListBaseAdapter(getActivity(), parcelInfoList){
+		adapter = new ListBaseAdapter(getActivity(), parcelInfoList) {
 			@Override
 			public void setValues(ViewHolder holder, Object object) {
 				super.setValues(holder, object);
-				if(object instanceof Parcel){
+				if (object instanceof Parcel) {
 					Parcel obj = (Parcel) object;
-					holder.nameTextView.setText(obj.getName()+", "+obj.getWeight());
-		
+					holder.nameTextView.setText(obj.getName() + ", "
+							+ obj.getWeight());
+
 					Resources res = getResources();
 					String inapp = String.format(res.getString(R.string.rupee),
 							obj.getPrice());
-		
+
 					holder.priceTextView.setText(inapp);
-					
+
 				}
 			}
 		};
@@ -314,4 +360,11 @@ public class ParcelListFragment extends Fragment {
 		}
 	}
 
+	private void setDefaultValues() {
+		apiHitsTextView.setText(String.format(getActivity().getResources()
+				.getString(R.string.api_hit), "N/A"));
+		totalParcelTextView.setText(String.format(getActivity().getResources()
+				.getString(R.string.total_parcels), "N/A"));
+	}
 }
+

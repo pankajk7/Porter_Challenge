@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+    
+
+    <com.porter.components.TextViewCircular 
+        style="@style/textviewstyle_Medium.black"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:padding="5dp"
+        android:layout_marginBottom="10dp"
+        android:gravity="center"
+        android:text="@string/send_sms"
+        android:textColor="@color/white"
+        android:background="@color/primary_color"/>
+    
+    
+    <com.porter.components.EditTextRegularFont 
+        style="@style/textviewstyle_Medium.black"
+        android:id="@+id/editText_sms_phone1"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:hint="@string/ph_sms"
+        android:padding="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:background="@drawable/view_round_corner_with_border"
+        android:singleLine="true"
+        android:maxLength="10"
+        android:inputType="phone"/>
+    
+    <com.porter.components.TextViewCircular 
+        style="@style/textviewstyle_small"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="10dp"
+        android:text="@string/message_description"/>
+    
+    <com.porter.components.TextViewCircular 
+        style="@style/textviewstyle_Medium.black"
+        android:id="@+id/textView_sms_message"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="2dp"
+        android:inputType="textMultiLine"
+        android:maxLines="5"
+        android:lines="5"
+        android:background="@drawable/view_round_corner_with_border"/>
+    
+    <com.porter.components.TextViewCircular 
+        android:id="@+id/textView_sms_note"
+        style="@style/textviewstyle_Medium.black"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="2dp"/>
+    
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_weight="0"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:orientation="horizontal">
+        <com.porter.components.ButtonRegularFont
+            style="@style/button.roundcorner" 
+            android:id="@+id/button_sms_cancel"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_margin="5dp"
+            android:text="@string/cancel"/>
+        
+         <com.porter.components.ButtonRegularFont
+            style="@style/button.roundcorner" 
+            android:id="@+id/button_sms_send"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_margin="5dp"
+            android:text="@string/send"/>
+         
+    </LinearLayout>
+</LinearLayout>

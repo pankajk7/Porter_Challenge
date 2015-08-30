@@ -9,4 +9,6 @@
     <string name="price">Price: %1$s</string>
     <string name="qnty">Quantity: %1$s</string>
     <string name="phone">Ph: %1$s</string>
+    <string name="date_info">Date: %1$s</string>
+    <string name="link_info">Link: %1$s</string>
 </resources>

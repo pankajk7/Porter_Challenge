@@ -16,6 +16,14 @@ public class Parcel implements Serializable{
 	String link;
 	Locations live_location;
 	
+	@Override
+	public String toString() {
+		return "Name: "+ name + "\n Type: " + type + "\n Price: " + price +
+				"\n Quantity: "+ quantity + "\n Weight: " + weight + 
+				"\n Phone: " + phone + "\n link: " + link + "\n Latitude: " + live_location.getLatitude()
+				 + "\n Longitude: " + live_location.getLongitude();
+	}
+	
 	public String getName() {
 		return name;
 	}

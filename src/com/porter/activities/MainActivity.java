@@ -23,7 +23,6 @@ public class MainActivity extends AppCompatActivity {
 		setContentView(R.layout.main_layout);
 
 		init();
-		findViews();
 	}
 
 	private void init() {
@@ -32,9 +31,6 @@ public class MainActivity extends AppCompatActivity {
 		FragmentTransaction fragmentTransaction = fm.beginTransaction();
 		fragmentTransaction.replace(R.id.layout_main_container, fragment);
 		fragmentTransaction.commit();
-	}
-
-	private void findViews() {
 	}
 
 }

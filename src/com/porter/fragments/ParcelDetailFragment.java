@@ -1,5 +1,9 @@
 package com.porter.fragments;
 
+import java.sql.Date;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+
 import com.android.volley.toolbox.NetworkImageView;
 import com.porter.PorterApplication;
 import com.porter.R;
@@ -8,6 +12,7 @@ import com.porter.entities.Parcel;
 import android.app.Activity;
 import android.graphics.Color;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class ParcelDetailFragment {
@@ -21,8 +26,10 @@ public class ParcelDetailFragment {
 	TextView qntyTextView;
 	TextView phoneTextView;
 	TextView colorTextView;
+	TextView dateTextView;
+	TextView linkTextView;
 
-	View colorView;
+	ImageView colorView;
 	Activity activity;
 
 	Parcel objParcel;
@@ -51,7 +58,12 @@ public class ParcelDetailFragment {
 				.findViewById(R.id.textView_parcelInfo_qnty);
 		phoneTextView = (TextView) rootView
 				.findViewById(R.id.textView_parcelInfo_ph);
-		colorView = (View) rootView.findViewById(R.id.view_parcelInfo_color);
+		colorView = (ImageView) rootView
+				.findViewById(R.id.imageView_parcelInfo_color);
+		dateTextView = (TextView) rootView
+				.findViewById(R.id.textView_parcelInfo_date);
+		linkTextView = (TextView) rootView
+				.findViewById(R.id.textView_parcelInfo_link);
 	}
 
 	private void setViewsValues() {
@@ -59,25 +71,37 @@ public class ParcelDetailFragment {
 			imageView.setImageUrl(objParcel.getImage(), PorterApplication
 					.getInstance().getImageLoader());
 			nameTextView.setText(objParcel.getName());
-			typeTextView.setText(String.format(activity
-					.getResources().getString(R.string.type),
-					objParcel.getType()));
-			priceTextView.setText(String.format(activity
-					.getResources().getString(R.string.price),
-					objParcel.getPrice()));
-			weightTextView.setText(String.format(activity
-					.getResources().getString(R.string.weight_info),
-					objParcel.getWeight()));
-			qntyTextView.setText(String.format(activity
-					.getResources().getString(R.string.qnty),
-					objParcel.getQuantity()));
-			phoneTextView.setText(String.format(activity
-					.getResources().getString(R.string.phone),
-					objParcel.getPhone()));
+			typeTextView.setText(String.format(activity.getResources()
+					.getString(R.string.type), objParcel.getType()));
+			priceTextView.setText(String.format(activity.getResources()
+					.getString(R.string.price), objParcel.getPrice()));
+			weightTextView.setText(String.format(activity.getResources()
+					.getString(R.string.weight_info), objParcel.getWeight()));
+			qntyTextView.setText(String.format(activity.getResources()
+					.getString(R.string.qnty), objParcel.getQuantity()));
+			phoneTextView.setText(String.format(activity.getResources()
+					.getString(R.string.phone), objParcel.getPhone()));
+			dateTextView.setText(String.format(activity.getResources()
+					.getString(R.string.date_info), convertToDate(objParcel
+					.getDate())));
+			linkTextView.setText(String.format(activity.getResources()
+					.getString(R.string.link_info), objParcel.getLink()));
 			colorView
 					.setBackgroundColor(Color.parseColor(objParcel.getColor()));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	private String convertToDate(String timeStamp) {
+		try {
+			Timestamp stamp = new Timestamp(Long.parseLong(timeStamp));
+			Date date = new Date(stamp.getTime());
+			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+			return sdf.format(date);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "N/A";
 	}
 }
